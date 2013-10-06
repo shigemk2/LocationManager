@@ -3,6 +3,7 @@ class LocationController < UIViewController
     view.backgroundColor = UIColor.underPageBackgroundColor
     create_location_label
     check_location
+    show_map
   end
 
   def check_location
@@ -42,5 +43,11 @@ class LocationController < UIViewController
     alert = UIAlertView.new
     alert.message = msg
     alert.show
+  end
+
+  def show_map
+    map = MKMapView.alloc.initWithFrame([[20,190],[275,150]])
+    map.mapType = MKMapTypeStandard
+    self.view.addSubview(map)
   end
 end
