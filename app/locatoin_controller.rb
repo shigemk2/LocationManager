@@ -3,7 +3,6 @@ class LocationController < UIViewController
     view.backgroundColor = UIColor.underPageBackgroundColor
     create_location_label
     check_location
-    show_map
   end
 
   def check_location
@@ -31,8 +30,12 @@ class LocationController < UIViewController
   end
 
   def locationManager(manager, didUpdateToLocation:newLocation, fromLocation:oldLocation)
+    @latitude = newLocation.coordinate.latitude
+    @longitude = newLocation.coordinate.longitude
     @latitudeLabel.text = @latitudeLabel.text + newLocation.coordinate.latitude.to_s
     @longitudeLabel.text = @longitudeLabel.text + newLocation.coordinate.longitude.to_s
+    @location_manager.stopUpdatingLocation
+    show_map
   end
 
   def locationManager(manager, didFailWithError:error)
@@ -48,6 +51,10 @@ class LocationController < UIViewController
   def show_map
     map = MKMapView.alloc.initWithFrame([[20,190],[275,150]])
     map.mapType = MKMapTypeStandard
+    location = CLLocationCoordinate2D.new(@latitude, @longitude)
+    map.setRegion(MKCoordinateRegionMake(location, MKCoordinateSpanMake(1, 1)),animated:true)
+    pointer = MyAnnotation.alloc.initWithCoordinate(location, title:"Title", andSubTitle:"Sub Title")
+    map.addAnnotation(pointer)
     self.view.addSubview(map)
   end
 end
