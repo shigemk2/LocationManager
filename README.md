@@ -8,3 +8,5 @@ This is sample [RubyMotion iOS Develoment Essentials on Chapter6](http://www.ama
 [![Build Status](https://travis-ci.org/shigemk2/LocationManager.png?branch=master)](https://travis-ci.org/shigemk2/LocationManager)
 [![Dependency Status](https://gemnasium.com/shigemk2/LocationManager.png)](https://gemnasium.com/shigemk2/LocationManager)
 
+![screenshont1](resources/screenshot.png)
+![screenshont2](resources/screenshot2.png)
